@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Инструкция GO</title>
+</head>
+<body>
+Назначение файлов:
+
+go.php -- стартовый файл. получает номер и пароль карты, передаёт управление на go1.php
+
+go1_cardchk.php -- файл. получает номер и пароль карты, передаёт управление go1.php
+
+go2_fond.php -- стартовый файл. получает номер и пароль карты, передаёт управление go1.php
+
+go.php -- стартовый файл. получает номер и пароль карты, передаёт управление go1.php
+
+go_сomposter.php -- файл администратора. получает номер и пароль карты, записывает в базу status=2 (оплачено) и текущую дату, как дату
+оплаты. необходимо использовать сразу после платежа
+
+baseprint.php -- выводит дамп БД на экран
+
+baseget.php --   сохраняет копию БД на компе в формате csv под excell. Запрашивает пароль администратора базы и путь для сохранения.
+
+
+</body>
+</html>
