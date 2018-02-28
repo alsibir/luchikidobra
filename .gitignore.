@@ -1,0 +1,9 @@
+#Исключим директорию __pycache__ :
+data/
+#Исключим сам файл .gitignore:
+#.gitignore
+
+data/7.csv
+7.csv
+data/*.tmm
+*.tmm
