@@ -38,7 +38,7 @@
  */
 
 
-$filename = "data/7.csv";
+$filename = "data/7.tmm";
 
 $arr = file( $filename );
 

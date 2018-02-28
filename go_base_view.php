@@ -7,7 +7,7 @@
  */
 
 
-$filename = "data/7.csv";
+$filename = "data/7.tmm";
 
 echo "Распечатка дампа БД $filename" ;
 echo "<pre>" . file_get_contents($filename) . "</pre>";

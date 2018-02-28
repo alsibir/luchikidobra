@@ -107,7 +107,7 @@ do_action( 'ava_after_main_title' );
 			CloseDirectPgEntre();
 
 
-			$filename = "data/7.csv";
+			$filename = "data/7.tmm";
 			$arr      = file( $filename );
 			$temp     = array( 'status', 'num', 'pas', 'nominal', 'adate', 'tdate', 'uemail' );
 			$i        = 0;
