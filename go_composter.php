@@ -38,11 +38,11 @@
  */
 
 
-$filename = "data/6.csv";
+$filename = "data/7.csv";
 
 $arr = file( $filename );
 
-$temp = array( 'status', 'num', 'pas', 'nominal', 'adate', 'tdate', 'uemail', 'unote' );
+$temp = array( 'status', 'num', 'pas', 'nominal', 'adate', 'tdate', 'uemail' );
 
 $num = $_POST['num'];
 $pas = $_POST['pas'];
@@ -62,8 +62,8 @@ foreach ( $arr as $line ) {
 	$temp['nominal'][ $i ]= $data[3];
 	$temp['adate'][ $i ]  = $data[4]; //дата активации
 	$temp['tdate'][ $i ]  = $data[5]; //дата перевода
-	$temp['uemail'][ $i ] = $data[6]; //email
-	$temp['unote'][ $i ]  = trim( $data[7] ); //usernote
+	$temp['uemail'][ $i ] = trim( $data[6] ); //email
+//	$temp['unote'][ $i ]  = trim( $data[7] ); //usernote
 	// Увеличиваем счётчик
 	$i ++;
 }
@@ -127,11 +127,17 @@ $temp['tdate'][ $index ] = date( "m.d.y" ); //дата перевода сред
 
 
 echo "<h1>Закомпостировано!</h1>";
-echo '<h2>Дамп базы данных:</h2>';
+echo '<h2>Дамп базы данных :  </h2>' ;
 //Запись массива в файл
 $f = fopen( $filename, 'w' );  //$fail = fopen($filename,"a");
 //в цикле считываем данные из массива и пишем их на экран и в файл
-for ( $i = 0; $i < 119; $i ++ ) {
+// 119
+
+//Сосчитаем число строк в файле
+//$lineCount = count(file($filename));
+//echo "число строк в файле $lineCount";
+$cnt = 110;
+for ( $i = 0; $i < ($cnt); $i ++ ) {
 	//отправляем на экран
 	echo $temp['status'][ $i ] . ";" .
 	     $temp['num'][ $i ] . ";" .
@@ -140,7 +146,8 @@ for ( $i = 0; $i < 119; $i ++ ) {
 	     $temp['adate'][ $i ] . ";" .
 	     $temp['tdate'][ $i ] . ";" .
 	     $temp['uemail'][ $i ] . ";" .
-	     $temp['unote'][ $i ] . "<br>";
+	   //  $temp['unote'][ $i ] .
+    "<br>";
 	//отправляем в файл
 	$line = $temp['status'][ $i ] . ";" .
 	        $temp['num'][ $i ] . ";" .
@@ -148,8 +155,7 @@ for ( $i = 0; $i < 119; $i ++ ) {
 	        $temp['nominal'][ $i ] . ";" .
 	        $temp['adate'][ $i ] . ";" .
 	        $temp['tdate'][ $i ] . ";" .
-	        $temp['uemail'][ $i ] . ";" .
-	        $temp['unote'][ $i ];
+	        $temp['uemail'][ $i ] ;
 	fputs( $f, $line . "\n" );
 }
 

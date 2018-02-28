@@ -59,7 +59,7 @@ function SendMeMail( $subject, $message ) {
 	///    1. активировть карту №. $num  (номинал $nominal руб.)
 	///    2. деньги перечислить в  $fondsel
 	///    3. подтвердить платеж на e-Mail: $uemail
-	///    4. Сообщение Благотворителя: $unote
+
 	///    ";
 
 
@@ -121,9 +121,9 @@ do_action( 'ava_after_main_title' );
 			///
 			///
 			///
-			$pflag   = 0; //флаг для подавления ненужных сообщений
-			$fondsel = '';
-			$filename = "data/6.csv";
+			$pflag    = 0; //флаг для подавления ненужных сообщений
+			$fondsel  = '';
+			$filename = "data/7.csv";
 
 
 			//чтение параметров карты из файла
@@ -133,7 +133,7 @@ do_action( 'ava_after_main_title' );
 
 
 			$uemail = $_POST['uemail'];
-			$unote  = $_POST['unote'];
+			//	$unote  = $_POST['unote'];
 
 			//для почтовой подпрограммы
 			$adminemail = "admin@luchikidobra.ru";  // e-mail админа
@@ -141,7 +141,7 @@ do_action( 'ava_after_main_title' );
 			$time       = date( "H:i" ); // часы:минуты:секунды
 			//	$backurl    = "http://luchikidobra.ru/go";  // На какую страничку переходит после отправки письма
 
-			//		echo "<hr>num= $num *** pas= $pas *** nominal=$nominal руб *** pflag=$pflag<br>uemail=$uemail <br>unote=$unote<hr>";
+			//		echo "<hr>num= $num *** pas= $pas *** nominal=$nominal руб *** pflag=$pflag<br>uemail=$uemail <hr>";
 
 			///		CloseDirectPgEntre(); //закрываем пустой вход
 
@@ -169,10 +169,9 @@ do_action( 'ava_after_main_title' );
 				}
 
 
-
 				$arr = file( $filename );
 
-				$temp = array( 'status', 'num', 'pas', 'nominal', 'adate', 'tdate', 'uemail', 'unote' );
+				$temp = array( 'status', 'num', 'pas', 'nominal', 'adate', 'tdate', 'uemail' );
 
 				$i = 0;
 
@@ -190,8 +189,8 @@ do_action( 'ava_after_main_title' );
 					$temp['nominal'][ $i ] = $data[3]; //номинал
 					$temp['adate'][ $i ]   = $data[4]; //дата активации
 					$temp['tdate'][ $i ]   = $data[5]; //дата перевода
-					$temp['uemail'][ $i ]  = $data[6]; //email
-					$temp['unote'][ $i ]   = trim( $data[7] ); //usernote
+					$temp['uemail'][ $i ]  = trim( $data[6] ); //email
+					//	$temp['unote'][ $i ]   = trim( $data[7] ); //usernote
 					// Увеличиваем счётчик
 					$i ++;
 				}
@@ -281,13 +280,29 @@ do_action( 'ava_after_main_title' );
 				$temp['adate'][ $index ] = date( "m.d.y" ); //дата активации это системная дата
 				//$temp['tdate'][ $index ] = date( "m.d.y" ); //дата перевода средств (системная)
 				$temp['uemail'][ $index ] = trim( $_POST['uemail'] ); //email пользователя
-				$temp['unote'][ $index ]  = trim( $_POST['unote'] ); //сообщение пользователя
+				//	$temp['unote'][ $index ]  = trim( $_POST['unote'] ); //сообщение пользователя
 
 
 				//Запись массива в файл и на экран
 				$f = fopen( $filename, 'w' );  //$fail = fopen($filename,"a");
 				//в цикле считываем данные из массива и пишем их на экран и в файл
-				for ( $i = 0; $i < 119; $i ++ ) {
+
+
+				//119
+				//Сосчитаем число строк в файле
+				//$cnt = count( file( "data/7.csv" ) );
+				///$lineCount = count( file( $filename ) );
+				///
+				//echo "<br>число строк в файле $cnt<br>";
+
+
+				//$bloggood = file( $filename );
+				//$cnt = count( $bloggood );
+                $cnt = 110;
+				//echo "<br>Количество строк в файле: " . $cnt . "<br>";
+
+
+				for ( $i = 0; $i < ( $cnt ); $i ++ ) {
 					//отправляем на экран
 					//		echo $temp['status'][ $i ] . ";" .
 					//		     $temp['num'][ $i ] . ";" .
@@ -303,8 +318,8 @@ do_action( 'ava_after_main_title' );
 					        $temp['nominal'][ $i ] . ";" .
 					        $temp['adate'][ $i ] . ";" .
 					        $temp['tdate'][ $i ] . ";" .
-					        $temp['uemail'][ $i ] . ";" .
-					        $temp['unote'][ $i ];//
+					        $temp['uemail'][ $i ];
+					//	        $temp['unote'][ $i ];//
 					fputs( $f, $line . "\n" );
 				}
 
@@ -323,8 +338,7 @@ do_action( 'ava_after_main_title' );
             1. Активировть карту № $num (номинал $nominal руб.)
             2. Деньги перечислить в  $fondsel 
             3. Подтвердить платеж по eMail: $uemail 
-            4. Сообщение Благотворителя: $unote 
-            " );
+                " );
 
 				OutMessagePg( "Ваше распоряжение об активации карты успешно отправлено.",
 					"<br>Пожалуйста, помогите нам стать лучше, - пройдите опрос, он займет не более 3 минут, но очень нам поможет.",

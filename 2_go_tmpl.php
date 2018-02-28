@@ -107,9 +107,9 @@ do_action( 'ava_after_main_title' );
 			CloseDirectPgEntre();
 
 
-			$filename = "data/6.csv";
+			$filename = "data/7.csv";
 			$arr      = file( $filename );
-			$temp     = array( 'status', 'num', 'pas', 'nominal', 'adate', 'tdate', 'uemail', 'unote' );
+			$temp     = array( 'status', 'num', 'pas', 'nominal', 'adate', 'tdate', 'uemail' );
 			$i        = 0;
 
 			foreach ( $arr as $line ) {            // Разбиваем строку по разделителю ";"
@@ -124,7 +124,7 @@ do_action( 'ava_after_main_title' );
 				$temp['adate'][ $i ]   = $data[4]; //дата активации
 				$temp['tdate'][ $i ]   = $data[5]; //дата перевода
 				$temp['uemail'][ $i ]  = $data[6]; //email
-				$temp['unote'][ $i ]   = trim( $data[7] ); //usernote
+				//$temp['unote'][ $i ]   = trim( $data[7] ); //usernote
 // Увеличиваем счётчик
 				$i ++;
 			}
